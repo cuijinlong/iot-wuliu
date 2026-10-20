@@ -1,1 +1,271 @@
-<!DOCTYPE html><br/><html lang="zh-CN"><br/><head><br/><meta charset="UTF-8" /><br/><meta name="viewport" content="width=device-width, initial-scale=1.0" /><br/><title>物联网赋能物流</title><br/><script src="https://cdn.tailwindcss.com"></script><br/><link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet"><br/><script><br/>  tailwind.config = {<br/>    theme: {<br/>      extend: {<br/>        colors: {<br/>          brand: {<br/>            50: '#eef6ff',<br/>            100: '#d9ecff',<br/>            200: '#b3d8ff',<br/>            300: '#82bcff',<br/>            400: '#4c95ff',<br/>            500: '#2b74f6',<br/>            600: '#1a58d9',<br/>            700: '#1646ae',<br/>            800: '#143b8a',<br/>            900: '#12346d',<br/>          },<br/>          dark: {<br/>            800: '#0b1220',<br/>            700: '#111a2e',<br/>            600: '#152040',<br/>            500: '#1c2b4f',<br/>          }<br/>        },<br/>        fontFamily: {<br/>          sans: ['Inter', 'PingFang SC', 'Microsoft YaHei', 'system-ui', 'sans-serif'],<br/>        },<br/>        boxShadow: {<br/>          glow: '0 10px 40px -10px rgba(43, 116, 246, 0.45)',<br/>        }<br/>      }<br/>    }<br/>  }<br/></script><br/><style><br/>  body {<br/>    background:<br/>      radial-gradient(circle at top left, rgba(43, 116, 246, 0.25), transparent 40%),<br/>      radial-gradient(circle at top right, rgba(34, 211, 238, 0.18), transparent 45%),<br/>      linear-gradient(180deg, #0b1220 0%, #0f1a33 100%);<br/>    background-attachment: fixed;<br/>  }<br/>  .grid-bg {<br/>    background-image:<br/>      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),<br/>      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);<br/>    background-size: 40px 40px;<br/>  }<br/>  .card {<br/>    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));<br/>    border: 1px solid rgba(255,255,255,0.1);<br/>    backdrop-filter: blur(10px);<br/>  }<br/>  .gradient-text {<br/>    background: linear-gradient(90deg, #60a5fa, #22d3ee, #a78bfa);<br/>    -webkit-background-clip: text;<br/>    background-clip: text;<br/>    color: transparent;<br/>  }<br/>  .section-title::before {<br/>    content: '';<br/>    display: inline-block;<br/>    width: 6px;<br/>    height: 22px;<br/>    margin-right: 12px;<br/>    vertical-align: middle;<br/>    background: linear-gradient(180deg, #60a5fa, #22d3ee);<br/>    border-radius: 3px;<br/>  }<br/>  .pulse-dot {<br/>    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);<br/>    animation: pulse 2s infinite;<br/>  }<br/>  @keyframes pulse {<br/>    0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7); }<br/>    70% { box-shadow: 0 0 0 12px rgba(34, 211, 238, 0); }<br/>    100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }<br/>  }<br/>  .stat-num {<br/>    background: linear-gradient(180deg, #fff, #93c5fd);<br/>    -webkit-background-clip: text;<br/>    background-clip: text;<br/>    color: transparent;<br/>  }<br/></style><br/></head><br/><body class="text-slate-100 min-h-screen"><br/><br/><div class="grid-bg"><br/>  <div class="max-w-6xl mx-auto px-6 py-16"><br/><br/>    <!-- 顶部标题区 --><br/>    <header class="text-center mb-16"><br/>      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-sky-300 mb-6"><br/>        <i class="fa fa-bluetooth-b"></i><br/>        <span>IoT · 物流安全 · 实时感知</span><br/>      </div><br/>      <h1 class="text-5xl md:text-6xl font-bold gradient-text mb-6">物联网赋能物流</h1><br/>      <p class="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed"><br/>        把看不见的隐患，变成实时可见的数据；让风险在发生之前，就被冷静拦截。<br/>      </p ><br/>    </header><br/><br/>    <!-- 第一部分：隐患 --><br/>    <section class="mb-16"><br/>      <h2 class="section-title text-2xl font-semibold mb-8">看不见的风险，正在悄然靠近</h2><br/><br/>      <div class="grid md:grid-cols-2 gap-6"><br/>        <div class="card rounded-2xl p-8 hover:border-sky-400/40 transition-all hover:-translate-y-1"><br/>          <div class="flex items-start gap-4"><br/>            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-red-500/20 to-orange-500/10 border border-red-400/30 flex items-center justify-center text-red-400 text-2xl"><br/>              <i class="fa fa-truck"></i><br/>            </div><br/>            <div><br/>              <h3 class="text-lg font-semibold mb-2">运输车辆隐患</h3><br/>              <p class="text-slate-300 text-sm leading-relaxed"><br/>                拉着易燃化学品的车辆，轮胎温度正在悄悄升高；司机却毫无察觉。<br/>              </p ><br/>            </div><br/>          </div><br/>        </div><br/><br/>        <div class="card rounded-2xl p-8 hover:border-sky-400/40 transition-all hover:-translate-y-1"><br/>          <div class="flex items-start gap-4"><br/>            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-500/20 to-yellow-500/10 border border-amber-400/30 flex items-center justify-center text-amber-400 text-2xl"><br/>              <i class="fa fa-warehouse"></i><br/>            </div><br/>            <div><br/>              <h3 class="text-lg font-semibold mb-2">仓储物料隐患</h3><br/>              <p class="text-slate-300 text-sm leading-relaxed"><br/>                对温度敏感的化工原料，因制冷设备轻微故障，正在慢慢变质。<br/>              </p ><br/>            </div><br/>          </div><br/>        </div><br/>      </div><br/><br/>      <div class="mt-6 card rounded-2xl p-6 border-l-4 border-l-red-400/60"><br/>        <p class="text-slate-200 leading-relaxed"><br/>          最害怕的可能已经不是那些日常的偷油、绕路，而是这种一旦发生就血本无归，甚至关乎身家性命的重大安全事故。<br/>        </p ><br/>      </div><br/>    </section><br/><br/>    <!-- 第二部分：物联网感知 --><br/>    <section class="mb-16"><br/>      <h2 class="section-title text-2xl font-semibold mb-8">物联网，让风险开始“说话”</h2><br/><br/>      <div class="grid md:grid-cols-3 gap-6"><br/>        <div class="card rounded-2xl p-7 text-center hover:border-sky-400/40 transition-all"><br/>          <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-sky-500/30 to-blue-600/20 border border-sky-400/40 flex items-center justify-center mb-4 text-sky-300 text-2xl"><br/>            <i class="fa fa-dot-circle-o"></i><br/>          </div><br/>          <h3 class="font-semibold mb-2">轮胎传感器</h3><br/>          <p class="text-sm text-slate-300 leading-relaxed"><br/>            实时监测胎压和温度，异常立即报警。<br/>          </p ><br/>        </div><br/><br/>        <div class="card rounded-2xl p-7 text-center hover:border-sky-400/40 transition-all"><br/>          <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-emerald-500/30 to-teal-600/20 border border-emerald-400/40 flex items-center justify-center mb-4 text-emerald-300 text-2xl"><br/>            <i class="fa fa-cloud"></i><br/>          </div><br/>          <h3 class="font-semibold mb-2">气体监测</h3><br/>          <p class="text-sm text-slate-300 leading-relaxed"><br/>            化学品罐车安装气体监测传感器，泄漏第一时间发现。<br/>          </p ><br/>        </div><br/><br/>        <div class="card rounded-2xl p-7 text-center hover:border-sky-400/40 transition-all"><br/>          <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-violet-500/30 to-purple-600/20 border border-violet-400/40 flex items-center justify-center mb-4 text-violet-300 text-2xl"><br/>            <i class="fa fa-thermometer-half"></i><br/>          </div><br/>          <h3 class="font-semibold mb-2">温湿度监测</h3><br/>          <p class="text-sm text-slate-300 leading-relaxed"><br/>            冷链仓库部署温湿度探头，数据自动上报、自动调节。<br/>          </p ><br/>        </div><br/>      </div><br/><br/>      <div class="mt-8 card rounded-2xl p-8 bg-gradient-to-br from-brand-600/20 to-transparent border-brand-400/30"><br/>        <p class="text-slate-100 leading-relaxed"><br/>          它让原本那些沉默的、可能酝酿大祸的物理状态，开始<span class="text-sky-300 font-semibold">二十四小时向你喊话</span>。<br/>        </p ><br/>      </div><br/>    </section><br/><br/>    <!-- 第三部分：实时数据拦截灾难 --><br/>    <section class="mb-16"><br/>      <h2 class="section-title text-2xl font-semibold mb-8">用实时数据拦截灾难</h2><br/><br/>      <div class="grid md:grid-cols-5 gap-6 items-stretch"><br/>        <div class="md:col-span-2 card rounded-2xl p-8 flex flex-col justify-between"><br/>          <div><br/>            <h3 class="font-semibold mb-4 text-sky-300">从前 vs 现在</h3><br/>            <ul class="space-y-3 text-sm text-slate-300"><br/>              <li class="flex gap-3"><br/>                <i class="fa fa-times-circle text-red-400 mt-1"></i><br/>                <span>司机肉眼检查，依赖经验与状态</span><br/>              </li><br/>              <li class="flex gap-3"><br/>                <i class="fa fa-times-circle text-red-400 mt-1"></i><br/>                <span>保管员定期巡检，存在盲区与延迟</span><br/>              </li><br/>              <li class="flex gap-3"><br/>                <i class="fa fa-check-circle text-emerald-400 mt-1"></i><br/>                <span>物联网传感器代替人眼，7×24 小时盯防</span><br/>              </li><br/>            </ul><br/>          </div><br/>        </div><br/><br/>        <div class="md:col-span-3 card rounded-2xl p-8 border-sky-400/30"><br/>          <h3 class="font-semibold mb-4 text-sky-300">案例参考</h3><br/>          <p class="text-slate-200 leading-relaxed mb-4"><br/>            一些轮胎智能服务商通过物联网实时监测，让 AI 高温预预警系统提前发现轮胎过热风险，防止车辆自燃、烧毁整车货物。<br/>          </p ><br/>          <div class="grid grid-cols-3 gap-4 mt-6"><br/>            <div class="bg-white/5 rounded-xl p-4 text-center"><br/>              <div class="stat-num text-3xl font-bold">7×24</div><br/>              <div class="text-xs text-slate-400 mt-1">全天候监测</div><br/>            </div><br/>            <div class="bg-white/5 rounded-xl p-4 text-center"><br/>              <div class="stat-num text-3xl font-bold">实时</div><br/>              <div class="text-xs text-slate-400 mt-1">异常告警</div><br/>            </div><br/>            <div class="bg-white/5 rounded-xl p-4 text-center"><br/>              <div class="stat-num text-3xl font-bold">上亿</div><br/>              <div class="text-xs text-slate-400 mt-1">潜在货值挽回</div><br/>            </div><br/>          </div><br/>        </div><br/>      </div><br/>    </section><br/><br/>    <!-- 第四部分：安全底气 --><br/>    <section class="mb-16"><br/>      <h2 class="section-title text-2xl font-semibold mb-8">不只是预警，更是经营底气</h2><br/><br/>      <div class="card rounded-2xl p-8 md:p-10 bg-gradient-to-br from-brand-700/30 to-dark-600/40 border-brand-400/30"><br/>        <p class="text-slate-100 leading-relaxed mb-6"><br/>          它解决的不只是经济损失，更是老板夜里能不能睡个安稳觉的身心负担。<br/>        </p ><br/><br/>        <div class="grid md:grid-cols-3 gap-5"><br/>          <div class="bg-white/5 rounded-xl p-5"><br/>            <div class="flex items-center gap-3 mb-2"><br/>              <i class="fa fa-shield text-sky-300"></i><br/>              <h4 class="font-semibold text-white">监管底气</h4><br/>            </div><br/>            <p class="text-sm text-slate-300">数据实时可查，面对上级监管更有依据。</p ><br/>          </div><br/><br/>          <div class="bg-white/5 rounded-xl p-5"><br/>            <div class="flex items-center gap-3 mb-2"><br/>              <i class="fa fa-handshake-o text-emerald-300"></i><br/>              <h4 class="font-semibold text-white">客户信任</h4><br/>            </div><br/>            <p class="text-sm text-slate-300">客户更放心把高风险货物交给你管理。</p ><br/>          </div><br/><br/>          <div class="bg-white/5 rounded-xl p-5"><br/>            <div class="flex items-center gap-3 mb-2"><br/>              <i class="fa fa-line-chart text-violet-300"></i><br/>              <h4 class="font-semibold text-white">安全溢价</h4><br/>            </div><br/>            <p class="text-sm text-slate-300">安全评级提升，保险费率可能下降，安全从成本变成竞争力。</p ><br/>          </div><br/>        </div><br/>      </div><br/>    </section><br/><br/>    <!-- 第五部分：数字保险丝 --><br/>    <section class="mb-10"><br/>      <h2 class="section-title text-2xl font-semibold mb-8">灾难冒烟前，把风险掐灭</h2><br/><br/>      <div class="card rounded-3xl p-10 text-center border-2 border-sky-400/30 bg-gradient-to-br from-sky-500/10 via-brand-600/10 to-transparent shadow-glow"><br/>        <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-sky-400 to-blue-600 mb-6 relative"><br/>          <i class="fa fa-bolt text-3xl text-white"></i><br/>          <span class="absolute inset-0 rounded-full border-2 border-sky-300 pulse-dot"></span><br/>        </div><br/><br/>        <h3 class="text-2xl md:text-3xl font-bold mb-4 gradient-text">它是高风险资产上的数字保险丝</h3><br/><br/>        <p class="text-slate-200 leading-relaxed max-w-3xl mx-auto"><br/>          物联网对你而言，远不是几个报警器。<br/>          它悬在那些高风险、高资产之上，在灾难冒烟之前，就能冷静地把它掐灭。<br/>        </p ><br/>      </div><br/>    </section><br/><br/>    <footer class="text-center text-slate-400 text-sm pt-8 border-t border-white/10"><br/>      <p>物联网赋能物流 · 实时感知 · 风险前置 · 数据驱动安全</p ><br/>    </footer><br/><br/>  </div><br/></div><br/><br/></body><br/></html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<title>物联网赋能物流｜销售资料</title>
+<style>
+:root{--bg:#f3f6fb;--ink:#152238;--muted:#68778d;--line:#e3e9f2;--blue:#2764e7;--cyan:#27c3d5;--navy:#0b1220;--green:#168568;--orange:#e78a2f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.55}
+.app{max-width:520px;margin:auto;min-height:100vh;background:#fff;box-shadow:0 0 40px #10213b0b}
+.hero{position:relative;overflow:hidden;padding:28px 22px 25px;background:radial-gradient(circle at 92% 12%,#2b78e655,transparent 32%),linear-gradient(145deg,#0b1220,#102b50 72%,#124f73);color:#fff}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:1.5px;color:#9bdff3;border:1px solid #72d6f344;padding:5px 9px;border-radius:99px}
+.dot{width:6px;height:6px;border-radius:50%;background:#46d8c2;box-shadow:0 0 12px #46d8c2}
+.hero h1{font-size:29px;line-height:1.25;margin:17px 0 10px;letter-spacing:-.6px}
+.hero p{margin:0;color:#c5d4e8;font-size:13px;max-width:360px}
+.hero-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:24px;gap:10px}
+.hero-tag{font-size:11px;color:#dbeafa;background:#ffffff12;border:1px solid #ffffff1c;border-radius:8px;padding:7px 10px}
+.art-svg{position:absolute;right:-16px;top:95px;width:150px;height:130px;opacity:.75;pointer-events:none}
+.nav{display:flex;gap:6px;padding:11px 10px;position:sticky;top:0;background:#ffffffed;backdrop-filter:blur(12px);z-index:5;border-bottom:1px solid var(--line)}
+.nav button{flex:1;min-width:0;border:1px solid var(--line);background:#f7f9fc;color:#617087;padding:10px 2px;border-radius:9px;font-size:11px;font-weight:650}
+.nav button.active{background:#eaf1ff;border-color:#a9c3ff;color:#1d56ce}
+.content{padding:18px 16px 30px}
+.section{display:none}
+.section.active{display:block;animation:fade .2s ease}
+@keyframes fade{from{opacity:.3;transform:translateY(4px)}to{opacity:1;transform:none}}
+.section-kicker{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--blue);text-transform:uppercase}
+.title{font-size:23px;line-height:1.3;margin:5px 0 8px;letter-spacing:-.4px}
+.lead{font-size:13px;color:var(--muted);margin:0 0 17px}
+.card{border:1px solid var(--line);border-radius:15px;padding:15px;margin:12px 0;background:#fff}
+.card.dark{background:linear-gradient(140deg,#10233e,#173d65);color:#fff;border:0}
+.card h3{margin:0 0 7px;font-size:15px}
+.card p{font-size:12px;color:var(--muted);margin:0}
+.card.dark p{color:#c5d5e8}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0}
+.metric{padding:13px;border-radius:12px;background:#f5f8fd;border:1px solid #e8edf5}
+.metric strong{display:block;font-size:19px;color:#1f5cce;letter-spacing:-.5px}
+.metric span{font-size:11px;color:var(--muted)}
+.pill{display:inline-block;font-size:10px;padding:4px 7px;border-radius:6px;background:#eaf7f4;color:#168568;margin-bottom:8px}
+.feature{display:flex;gap:11px;margin:13px 0;align-items:flex-start}
+.feature-icon{width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:#edf3ff;display:grid;place-items:center;color:var(--blue);font-size:16px}
+.feature b{font-size:13px;display:block;margin:1px 0 3px}
+.feature p{font-size:12px;color:var(--muted);margin:0}
+.quote{font-size:14px;font-weight:650;line-height:1.65;border-left:3px solid var(--cyan);padding:2px 0 2px 13px;margin:15px 0}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.tag{font-size:10px;padding:5px 8px;background:#f1f5fb;color:#53647b;border-radius:7px}
+.footer{padding:16px 20px 25px;border-top:1px solid var(--line);color:#8a97a9;font-size:10px;text-align:center}
+@media(min-width:600px){body{padding:22px 0}.app{border-radius:20px;overflow:hidden}.nav{top:0}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hero">
+  <span class="eyebrow"><span class="dot"></span> IOT LOGISTIC SAFETY</span>
+  <h1>物联网赋能物流<br>风险前置拦截</h1>
+  <p>把看不见的隐患，变成实时可见的数据；让风险在发生之前，就被冷静拦截。</p>
+  <div class="hero-bottom">
+    <span class="hero-tag">危化运输 · 仓储安全 · 实时感知</span>
+    <span class="hero-tag">产品资料 01</span>
+  </div>
+  <svg class="art-svg" viewBox="0 0 160 140" fill="none" aria-hidden="true">
+    <circle cx="90" cy="66" r="52" stroke="#45c7e2" stroke-opacity=".3" />
+    <circle cx="90" cy="66" r="38" stroke="#45c7e2" stroke-opacity=".5" />
+    <path d="M88 19L57 72H82L70 112L119 55H91L105 19Z" fill="#43d4e6" fill-opacity=".88" />
+  </svg>
+</header>
+
+<nav class="nav" aria-label="销售资料导航">
+<button class="active" data-tab="overview">方案总览</button>
+<button data-tab="capability">感知能力</button>
+<button data-tab="value">业务价值</button>
+</nav>
+
+<main class="content">
+<section class="section active" id="overview">
+  <div class="section-kicker">01 / OVERVIEW</div>
+  <h2 class="title">看不见的风险，正在悄然靠近</h2>
+  <p class="lead">不再只关注偷油、绕路这类常规问题，重点应对一旦出事就血本无归、关乎身家性命的重大安全事故。</p>
+
+  <div class="card dark">
+    <span class="pill">风险场景</span>
+    <h3>潜伏在运输与仓储中的隐患</h3>
+    <p>车辆轮胎温度悄悄升高、仓库热敏化工原料因制冷故障变质，事故发生之前往往毫无察觉。</p>
+    <div class="metrics">
+      <div class="metric"><strong>车运</strong><span>危化车辆轮胎、罐体风险</span></div>
+      <div class="metric"><strong>仓储</strong><span>温敏原料、制冷设备隐患</span></div>
+      <div class="metric"><strong>滞后</strong><span>人工巡检存在盲区延迟</span></div>
+      <div class="metric"><strong>后果</strong><span>财产损失与人身安全风险</span></div>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-icon">🚚</div>
+    <div>
+      <b>运输车辆隐患</b>
+      <p>你的车队里拉着易燃化学品的那辆车，轮胎温度正在悄悄地升高，而你和你的司机却毫无察觉。</p>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-icon">🏭</div>
+    <div>
+      <b>仓库仓储隐患</b>
+      <p>仓库那批对温度极其敏感的化工原料，因为制冷设备的一次轻微故障，正在慢慢的变质。</p>
+    </div>
+  </div>
+
+  <div class="quote">最害怕的可能已经不是那些日常的偷油、绕路，而是这种一旦发生就血本无归，甚至关乎身家性命的重大安全事故。</div>
+
+  <div class="tag-row">
+    <span class="tag">危化品运输</span>
+    <span class="tag">恒温化工仓储</span>
+    <span class="tag">轮胎温度监测</span>
+    <span class="tag">泄漏预警</span>
+  </div>
+
+  <div class="actions">
+    <button class="btn primary" onclick="copyText('您好，我们这套物联网物流安全方案，针对危化运输与化工仓储，通过各类传感器实时采集胎压胎温、气体泄漏、仓内温湿度，7×24小时监测，异常即时告警，把风险拦截在事故发生之前。')">复制客户沟通话术</button>
+  </div>
+</section>
+
+<section class="section" id="capability">
+  <div class="section-kicker">02 / CAPABILITY</div>
+  <h2 class="title">物联网，让风险开始“说话”</h2>
+  <p class="lead">它不是简单的定位，而是给风险点位部署传感器，让沉默的物理状态二十四小时向你喊话。</p>
+
+  <div class="card dark">
+    <span class="pill">感知能力</span>
+    <h3>传感器代替人眼，7×24小时盯防</h3>
+    <p>从前预防事故靠司机肉眼检查、保管员定期巡检；现在物联网传感器持续采集关键状态数据。</p>
+    <div class="metrics">
+      <div class="metric"><strong>胎压胎温</strong><span>轮胎内置传感器监测报警</span></div>
+      <div class="metric"><strong>气体泄漏</strong><span>罐车气体传感器第一时间发现</span></div>
+      <div class="metric"><strong>温湿度</strong><span>仓库探头自动上报调节</span></div>
+      <div class="metric"><strong>AI预警</strong><span>提前识别过热等风险</span></div>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-icon">◉</div>
+    <div>
+      <b>轮胎传感器</b>
+      <p>在轮胎里埋下一个传感器，实时监测胎压和温度，一旦异常就立即报警。</p>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-icon">☁</div>
+    <div>
+      <b>气体监测传感器</b>
+      <p>在化学品运输罐车上安装气体监测传感器，泄漏第一时间就知道。</p>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-icon">🌡</div>
+    <div>
+      <b>温湿度探头</b>
+      <p>在冷链仓库的每个角落部署温湿度探头，数据自动上报、自动调节。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>用实时的数据拦截灾难</h3>
+    <p>参考一些轮胎智能服务商的案例，通过物联网实时监测，让AI高温预预警系统能够提前发现轮胎过热风险，防止车辆自燃、烧毁整车货物，光是挽回这个货值就可能达到上亿。</p>
+  </div>
+
+  <div class="quote">它让原本那些沉默的可能酝酿大祸的物理状态开始二十四小时向你喊话。</div>
+</section>
+
+<section class="section" id="value">
+  <div class="section-kicker">03 / BUSINESS VALUE</div>
+  <h2 class="title">不止预警，更是企业经营底气</h2>
+  <p class="lead">解决的不只是经济损失，更是管理者夜里能不能睡个安稳觉的身心负担。</p>
+
+  <div class="card dark">
+    <span class="pill">商业价值</span>
+    <h3>安全从成本支出变成可溢价竞争力</h3>
+    <p>一套数据实时可查的安全管理系统，面对监管、保险、客户都形成硬底气。</p>
+    <div class="metrics">
+      <div class="metric"><strong>监管</strong><span>数据可追溯，合规有据</span></div>
+      <div class="metric"><strong>客户</strong><span>高风险货物更愿意交付</span></div>
+      <div class="metric"><strong>保险</strong><span>安全评级提升，费率有望下降</span></div>
+      <div class="metric"><strong>竞争力</strong><span>安全能力形成业务溢价</span></div>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-icon">🛡</div>
+    <div>
+      <b>面对监管的底气</b>
+      <p>当你拥有一套被物联网严格监控，数据实时可查的安全管理系统时，它就成为你面对上级监管时最硬的一个底气。</p>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-icon">🤝</div>
+    <div>
+      <b>面对客户的底气</b>
+      <p>你的客户更放心把高风险的货物交给你。</p>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-icon">📈</div>
+    <div>
+      <b>经营层面收益</b>
+      <p>你的安全评级上去了呢，保险费率可能就下来了。安全从一项成本支出变成一个可溢价的市场竞争力。</p>
+    </div>
+  </div>
+
+  <div class="quote">所以物联网对你而言远不是几个报警器，它是悬在那些高风险高资产上的一个数字保险丝。在灾难冒烟前呢，就能冷静的把它给掐灭。</div>
+
+  <div class="tag-row">
+    <span class="tag">安全合规</span>
+    <span class="tag">保险议价</span>
+    <span class="tag">客户信任</span>
+    <span class="tag">风险前置</span>
+  </div>
+
+  <div class="actions">
+    <button class="btn primary" onclick="copyText('物联网不只是报警器，它是高风险资产上的数字保险丝，在灾难冒烟之前就把风险掐灭，把安全能力转化为企业的市场竞争力。')">复制总结话术</button>
+  </div>
+</section>
+</main>
+
+<footer class="footer">物联网赋能物流 · 实时感知 · 风险前置 · 数据驱动安全<br>页面内容为方案宣传资料，实际效果以硬件部署、现场条件为准。</footer>
+</div>
+
+<div id="toast" style="position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#17253b;color:white;padding:11px 16px;border-radius:12px;font-size:12px;box-shadow:0 8px 25px #0002;transition:.2s;z-index:10">已复制</div>
+
+<script>
+const buttons=[...document.querySelectorAll('[data-tab]')];
+const sections=[...document.querySelectorAll('.section')];
+buttons.forEach(btn=>btn.addEventListener('click',()=>{
+  buttons.forEach(b=>b.classList.toggle('active',b===btn));
+  sections.forEach(s=>s.classList.toggle('active',s.id===btn.dataset.tab));
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.opacity='1';
+  t.style.transform='translate(-50%,0)';
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>{
+    t.style.opacity='0';
+    t.style.transform='translate(-50%,20px)'
+  },2100);
+}
+async function copyText(text){
+  try{
+    await navigator.clipboard.writeText(text);
+    showToast('话术已复制，可直接粘贴');
+  }catch(e){
+    const ta=document.createElement('textarea');
+    ta.value=text;
+    ta.style.position='fixed';
+    ta.style.opacity='0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{document.execCommand('copy');showToast('话术已复制，可直接粘贴')}
+    catch(err){showToast('当前浏览器不支持自动复制，请长按选择文本')}
+    ta.remove();
+  }
+}
+</script>
+</body>
+</html>
