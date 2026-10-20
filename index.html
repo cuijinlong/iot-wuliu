@@ -2,247 +2,631 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 <meta name="theme-color" content="#0b1220">
 <title>物联网赋能物流</title>
 <style>
-:root{--bg:#f3f6fb;--ink:#152238;--muted:#68778d;--line:#e3e9f2;--blue:#2764e7;--cyan:#27c3d5;--navy:#0b1220;--green:#168568;--orange:#e78a2f}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);line-height:1.55}
-.app{max-width:520px;margin:auto;min-height:100vh;background:#fff;box-shadow:0 0 40px #10213b0b}
-.hero{position:relative;overflow:hidden;padding:28px 22px 25px;background:radial-gradient(circle at 92% 12%,#2b78e655,transparent 32%),linear-gradient(145deg,#0b1220,#102b50 72%,#124f73);color:#fff}
-.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:1.5px;color:#9bdff3;border:1px solid #72d6f344;padding:5px 9px;border-radius:99px}
-.dot{width:6px;height:6px;border-radius:50%;background:#46d8c2;box-shadow:0 0 12px #46d8c2}
-.hero h1{font-size:29px;line-height:1.25;margin:17px 0 10px;letter-spacing:-.6px}
-.hero p{margin:0;color:#c5d4e8;font-size:13px;max-width:360px}
-.hero-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:24px;gap:10px}
-.hero-tag{font-size:11px;color:#dbeafa;background:#ffffff12;border:1px solid #ffffff1c;border-radius:8px;padding:7px 10px}
-.art-svg{position:absolute;right:-16px;top:95px;width:150px;height:130px;opacity:.75;pointer-events:none}
-.nav{display:flex;gap:6px;padding:11px 10px;position:sticky;top:0;background:#ffffffed;backdrop-filter:blur(12px);z-index:5;border-bottom:1px solid var(--line)}
-.nav button{flex:1;min-width:0;border:1px solid var(--line);background:#f7f9fc;color:#617087;padding:10px 2px;border-radius:9px;font-size:11px;font-weight:650}
-.nav button.active{background:#eaf1ff;border-color:#a9c3ff;color:#1d56ce}
-.content{padding:18px 16px 30px}
-.section{display:none}
-.section.active{display:block;animation:fade .2s ease}
-@keyframes fade{from{opacity:.3;transform:translateY(4px)}to{opacity:1;transform:none}}
-.section-kicker{font-size:11px;font-weight:800;letter-spacing:1.4px;color:var(--blue);text-transform:uppercase}
-.title{font-size:23px;line-height:1.3;margin:5px 0 8px;letter-spacing:-.4px}
-.lead{font-size:13px;color:var(--muted);margin:0 0 17px}
-.card{border:1px solid var(--line);border-radius:15px;padding:15px;margin:12px 0;background:#fff}
-.card.dark{background:linear-gradient(140deg,#10233e,#173d65);color:#fff;border:0}
-.card h3{margin:0 0 7px;font-size:15px}
-.card p{font-size:12px;color:var(--muted);margin:0}
-.card.dark p{color:#c5d5e8}
-.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:14px 0}
-.metric{padding:13px;border-radius:12px;background:#f5f8fd;border:1px solid #e8edf5}
-.metric strong{display:block;font-size:19px;color:#1f5cce;letter-spacing:-.5px}
-.metric span{font-size:11px;color:var(--muted)}
-.pill{display:inline-block;font-size:10px;padding:4px 7px;border-radius:6px;background:#eaf7f4;color:#168568;margin-bottom:8px}
-.feature{display:flex;gap:11px;margin:13px 0;align-items:flex-start}
-.feature-icon{width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:#edf3ff;display:grid;place-items:center;color:var(--blue);font-size:16px}
-.feature b{font-size:13px;display:block;margin:1px 0 3px}
-.feature p{font-size:12px;color:var(--muted);margin:0}
-.quote{font-size:14px;font-weight:650;line-height:1.65;border-left:3px solid var(--cyan);padding:2px 0 2px 13px;margin:15px 0}
-.tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-.tag{font-size:10px;padding:5px 8px;background:#f1f5fb;color:#53647b;border-radius:7px}
-.footer{padding:16px 20px 25px;border-top:1px solid var(--line);color:#8a97a9;font-size:10px;text-align:center}
-@media(min-width:600px){body{padding:22px 0}.app{border-radius:20px;overflow:hidden}.nav{top:0}}
+  /* 基础重置 + 手机字体放大 */
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    font-size: 18px; /* 根字号加大，方便 rem 缩放；但主要用 px 控制，这里确保 body 默认大 */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: #f3f6fb;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: #152238;
+    line-height: 1.6;
+    font-size: 16px;        /* 基础字号比之前 13-14px 大 */
+    padding: 0;
+    /* 让手机可以正常滚动，并且点击不出现奇怪高亮 */
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .app {
+    max-width: 580px;       /* 稍宽一点，但保持手机友好 */
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(16, 33, 59, 0.05);
+    padding-bottom: 10px;
+    overflow-x: hidden;     /* 防止意外溢出 */
+  }
+
+  /* 所有按钮可点区域大，字体大 */
+  button {
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    touch-action: manipulation;
+    border: none;
+    background: none;
+    color: inherit;
+  }
+
+  /* Hero 区域字体放大 */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 30px 22px 28px;
+    background: radial-gradient(circle at 92% 12%, #2b78e655, transparent 32%),
+                linear-gradient(145deg, #0b1220, #102b50 72%, #124f73);
+    color: #fff;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+    color: #9bdff3;
+    border: 1px solid #72d6f344;
+    padding: 6px 12px;
+    border-radius: 99px;
+    background: #ffffff0a;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #46d8c2;
+    box-shadow: 0 0 14px #46d8c2;
+  }
+
+  .hero h1 {
+    font-size: 32px;        /* 加大 */
+    line-height: 1.3;
+    margin: 20px 0 12px;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+  }
+
+  .hero p {
+    margin: 0;
+    color: #c5d4e8;
+    font-size: 16px;        /* 加大 */
+    max-width: 380px;
+    line-height: 1.65;
+  }
+
+  .hero-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 26px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hero-tag {
+    font-size: 13px;
+    color: #dbeafa;
+    background: #ffffff12;
+    border: 1px solid #ffffff1c;
+    border-radius: 10px;
+    padding: 8px 14px;
+    white-space: nowrap;
+  }
+
+  .art-svg {
+    position: absolute;
+    right: -16px;
+    top: 95px;
+    width: 150px;
+    height: 130px;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  /* 导航：加大按钮和字体，便于触摸 */
+  .nav {
+    display: flex;
+    gap: 8px;
+    padding: 14px 12px;
+    position: sticky;
+    top: 0;
+    background: #ffffffed;
+    backdrop-filter: blur(12px);
+    z-index: 20;
+    border-bottom: 1px solid #e3e9f2;
+  }
+
+  .nav button {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid #e3e9f2;
+    background: #f7f9fc;
+    color: #617087;
+    padding: 14px 4px;       /* 更大的点击区域 */
+    border-radius: 12px;
+    font-size: 16px;         /* 加大 */
+    font-weight: 650;
+    text-align: center;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    line-height: 1.3;
+    word-break: keep-all;
+  }
+
+  .nav button.active {
+    background: #eaf1ff;
+    border-color: #a9c3ff;
+    color: #1d56ce;
+  }
+
+  /* 内容区 */
+  .content {
+    padding: 22px 18px 40px;
+  }
+
+  .section {
+    display: none;
+  }
+
+  .section.active {
+    display: block;
+    animation: fade 0.25s ease;
+  }
+
+  @keyframes fade {
+    from { opacity: 0.3; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .section-kicker {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #2764e7;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .title {
+    font-size: 28px;         /* 加大 */
+    line-height: 1.3;
+    margin: 6px 0 12px;
+    letter-spacing: -0.4px;
+    font-weight: 700;
+  }
+
+  .lead {
+    font-size: 16px;
+    color: #68778d;
+    margin: 0 0 20px;
+    line-height: 1.65;
+  }
+
+  /* 卡片：内边距更大，文字更大 */
+  .card {
+    border: 1px solid #e3e9f2;
+    border-radius: 18px;
+    padding: 20px 18px;
+    margin: 16px 0;
+    background: #fff;
+  }
+
+  .card.dark {
+    background: linear-gradient(140deg, #10233e, #173d65);
+    color: #fff;
+    border: none;
+  }
+
+  .card h3 {
+    margin: 0 0 10px;
+    font-size: 19px;         /* 加大 */
+    font-weight: 650;
+    line-height: 1.4;
+  }
+
+  .card p {
+    font-size: 15px;
+    color: #68778d;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  .card.dark p {
+    color: #c5d5e8;
+  }
+
+  .pill {
+    display: inline-block;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: #eaf7f4;
+    color: #168568;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+
+  /* 指标网格：字体加大 */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 18px 0 6px;
+  }
+
+  .metric {
+    padding: 16px 14px;
+    border-radius: 14px;
+    background: #f5f8fd;
+    border: 1px solid #e8edf5;
+  }
+
+  .metric strong {
+    display: block;
+    font-size: 22px;        /* 加大 */
+    color: #1f5cce;
+    letter-spacing: -0.4px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .metric span {
+    font-size: 13px;
+    color: #68778d;
+    line-height: 1.45;
+    display: block;
+  }
+
+  /* 特性条目 */
+  .feature {
+    display: flex;
+    gap: 14px;
+    margin: 20px 0;
+    align-items: flex-start;
+  }
+
+  .feature-icon {
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border-radius: 14px;
+    background: #edf3ff;
+    display: grid;
+    place-items: center;
+    color: #2764e7;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .feature b {
+    font-size: 17px;        /* 加大 */
+    display: block;
+    margin: 2px 0 5px;
+    font-weight: 650;
+  }
+
+  .feature p {
+    font-size: 15px;
+    color: #68778d;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* 引用块 */
+  .quote {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.7;
+    border-left: 4px solid #27c3d5;
+    padding: 8px 0 8px 16px;
+    margin: 24px 0;
+    color: #1a2c47;
+    background: #f9fcff;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .tag-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .tag {
+    font-size: 13px;
+    padding: 7px 12px;
+    background: #f1f5fb;
+    color: #53647b;
+    border-radius: 20px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .footer {
+    padding: 22px 20px 30px;
+    border-top: 1px solid #e3e9f2;
+    color: #8a97a9;
+    font-size: 13px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  /* 提示条：字体加大、位置调整 */
+  #toast {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translate(-50%, 30px);
+    opacity: 0;
+    pointer-events: none;
+    background: #17253b;
+    color: white;
+    padding: 14px 22px;
+    border-radius: 30px;
+    font-size: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: 0.25s;
+    z-index: 100;
+    max-width: 90vw;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  /* 媒体查询：极小屏幕微调 */
+  @media (max-width: 400px) {
+    .hero h1 { font-size: 28px; }
+    .title { font-size: 24px; }
+    .metric strong { font-size: 20px; }
+    .nav button { font-size: 15px; padding: 12px 2px; }
+    .content { padding: 18px 14px 32px; }
+    .hero-tag { font-size: 12px; padding: 6px 10px; white-space: normal; }
+    .hero-bottom { justify-content: flex-start; }
+  }
+
+  /* 让点击区域更容易，链接和按钮都去掉默认外观 */
+  button:focus-visible {
+    outline: 2px solid #2764e7;
+    outline-offset: 2px;
+  }
+
+  /* 防止图片或svg被选中 */
+  .art-svg {
+    user-select: none;
+  }
 </style>
 </head>
 <body>
 <div class="app">
-<header class="hero">
-  <span class="eyebrow"><span class="dot"></span> IOT LOGISTIC SAFETY</span>
-  <h1>物联网赋能物流<br>风险前置拦截</h1>
-  <p>把看不见的隐患，变成实时可见的数据；让风险在发生之前，就被冷静拦截。</p>
-  <div class="hero-bottom">
-    <span class="hero-tag">危化运输 · 仓储安全 · 实时感知</span>
-    <span class="hero-tag">产品资料 01</span>
-  </div>
-  <svg class="art-svg" viewBox="0 0 160 140" fill="none" aria-hidden="true">
-    <circle cx="90" cy="66" r="52" stroke="#45c7e2" stroke-opacity=".3" />
-    <circle cx="90" cy="66" r="38" stroke="#45c7e2" stroke-opacity=".5" />
-    <path d="M88 19L57 72H82L70 112L119 55H91L105 19Z" fill="#43d4e6" fill-opacity=".88" />
-  </svg>
-</header>
-
-<nav class="nav" aria-label="资料导航">
-<button class="active" data-tab="overview">方案总览</button>
-<button data-tab="capability">感知能力</button>
-<button data-tab="value">业务价值</button>
-</nav>
-
-<main class="content">
-<section class="section active" id="overview">
-  <div class="section-kicker">01 / OVERVIEW</div>
-  <h2 class="title">潜在风险分析</h2>
-  <div class="card dark">
-    <span class="pill">风险场景</span>
-    <h3>潜伏在运输与仓储中的隐患</h3>
-    <p>车辆轮胎温度悄悄升高、仓库热敏化工原料因制冷故障变质，事故发生之前往往毫无察觉。</p>
-    <div class="metrics">
-      <div class="metric"><strong>车运</strong><span>危化车辆轮胎、罐体风险</span></div>
-      <div class="metric"><strong>仓储</strong><span>温敏原料、制冷设备隐患</span></div>
-      <div class="metric"><strong>滞后</strong><span>人工巡检存在盲区延迟</span></div>
-      <div class="metric"><strong>后果</strong><span>财产损失与人身安全风险</span></div>
+  <header class="hero">
+    <span class="eyebrow"><span class="dot"></span> IOT LOGISTIC SAFETY</span>
+    <h1>物联网赋能物流<br>风险前置拦截</h1>
+    <p>把看不见的隐患，变成实时可见的数据；让风险在发生之前，就被冷静拦截。</p>
+    <div class="hero-bottom">
+      <span class="hero-tag">危化运输 · 仓储安全 · 实时感知</span>
+      <span class="hero-tag">产品资料 01</span>
     </div>
-  </div>
+    <svg class="art-svg" viewBox="0 0 160 140" fill="none" aria-hidden="true">
+      <circle cx="90" cy="66" r="52" stroke="#45c7e2" stroke-opacity=".3" />
+      <circle cx="90" cy="66" r="38" stroke="#45c7e2" stroke-opacity=".5" />
+      <path d="M88 19L57 72H82L70 112L119 55H91L105 19Z" fill="#43d4e6" fill-opacity=".88" />
+    </svg>
+  </header>
 
-  <div class="feature">
-    <div class="feature-icon">🚚</div>
-    <div>
-      <b>运输车辆隐患</b>
-      <p>你的车队里拉着易燃化学品的那辆车，轮胎温度正在悄悄地升高，而你和你的司机却毫无察觉。</p>
-    </div>
-  </div>
+  <!-- 导航按钮加大，更易触摸 -->
+  <nav class="nav" aria-label="资料导航">
+    <button class="active" data-tab="overview">方案总览</button>
+    <button data-tab="capability">感知能力</button>
+    <button data-tab="value">业务价值</button>
+  </nav>
 
-  <div class="feature">
-    <div class="feature-icon">🏭</div>
-    <div>
-      <b>仓库仓储隐患</b>
-      <p>仓库那批对温度极其敏感的化工原料，因为制冷设备的一次轻微故障，正在慢慢的变质。</p>
-    </div>
-  </div>
-  <div class="tag-row">
-    <span class="tag">危化品运输</span>
-    <span class="tag">恒温化工仓储</span>
-    <span class="tag">轮胎温度监测</span>
-    <span class="tag">泄漏预警</span>
-  </div>
-</section>
+  <main class="content">
+    <!-- 总览 -->
+    <section class="section active" id="overview">
+      <div class="section-kicker">01 / OVERVIEW</div>
+      <h2 class="title">潜在风险分析</h2>
+      <div class="card dark">
+        <span class="pill">风险场景</span>
+        <h3>潜伏在运输与仓储中的隐患</h3>
+        <p>车辆轮胎温度悄悄升高、仓库热敏化工原料因制冷故障变质，事故发生之前往往毫无察觉。</p>
+        <div class="metrics">
+          <div class="metric"><strong>车运</strong><span>危化车辆轮胎、罐体风险</span></div>
+          <div class="metric"><strong>仓储</strong><span>温敏原料、制冷设备隐患</span></div>
+          <div class="metric"><strong>滞后</strong><span>人工巡检存在盲区延迟</span></div>
+          <div class="metric"><strong>后果</strong><span>财产损失与人身安全风险</span></div>
+        </div>
+      </div>
 
-<section class="section" id="capability">
-  <div class="section-kicker">02 / CAPABILITY</div>
-  <h2 class="title">物联网，让风险开始“说话”</h2>
-  <p class="lead">它不是简单的定位，而是给风险点位部署传感器，让沉默的物理状态二十四小时向你喊话。</p>
+      <div class="feature">
+        <div class="feature-icon">🚚</div>
+        <div>
+          <b>运输车辆隐患</b>
+          <p>你的车队里拉着易燃化学品的那辆车，轮胎温度正在悄悄地升高，而你和你的司机却毫无察觉。</p>
+        </div>
+      </div>
 
-  <div class="card dark">
-    <span class="pill">感知能力</span>
-    <h3>传感器代替人眼，7×24小时盯防</h3>
-    <p>从前预防事故靠司机肉眼检查、保管员定期巡检；现在物联网传感器持续采集关键状态数据。</p>
-    <div class="metrics">
-      <div class="metric"><strong>胎压胎温</strong><span>轮胎内置传感器监测报警</span></div>
-      <div class="metric"><strong>气体泄漏</strong><span>罐车气体传感器第一时间发现</span></div>
-      <div class="metric"><strong>温湿度</strong><span>仓库探头自动上报调节</span></div>
-      <div class="metric"><strong>AI预警</strong><span>提前识别过热等风险</span></div>
-    </div>
-  </div>
+      <div class="feature">
+        <div class="feature-icon">🏭</div>
+        <div>
+          <b>仓库仓储隐患</b>
+          <p>仓库那批对温度极其敏感的化工原料，因为制冷设备的一次轻微故障，正在慢慢的变质。</p>
+        </div>
+      </div>
+      <div class="tag-row">
+        <span class="tag">危化品运输</span>
+        <span class="tag">恒温化工仓储</span>
+        <span class="tag">轮胎温度监测</span>
+        <span class="tag">泄漏预警</span>
+      </div>
+    </section>
 
-  <div class="feature">
-    <div class="feature-icon">◉</div>
-    <div>
-      <b>轮胎传感器</b>
-      <p>在轮胎里埋下一个传感器，实时监测胎压和温度，一旦异常就立即报警。</p>
-    </div>
-  </div>
+    <!-- 感知能力 -->
+    <section class="section" id="capability">
+      <div class="section-kicker">02 / CAPABILITY</div>
+      <h2 class="title">物联网，让风险开始“说话”</h2>
+      <p class="lead">它不是简单的定位，而是给风险点位部署传感器，让沉默的物理状态二十四小时向你喊话。</p>
 
-  <div class="feature">
-    <div class="feature-icon">☁</div>
-    <div>
-      <b>气体监测传感器</b>
-      <p>在化学品运输罐车上安装气体监测传感器，泄漏第一时间就知道。</p>
-    </div>
-  </div>
+      <div class="card dark">
+        <span class="pill">感知能力</span>
+        <h3>传感器代替人眼，7×24小时盯防</h3>
+        <p>从前预防事故靠司机肉眼检查、保管员定期巡检；现在物联网传感器持续采集关键状态数据。</p>
+        <div class="metrics">
+          <div class="metric"><strong>胎压胎温</strong><span>轮胎内置传感器监测报警</span></div>
+          <div class="metric"><strong>气体泄漏</strong><span>罐车气体传感器第一时间发现</span></div>
+          <div class="metric"><strong>温湿度</strong><span>仓库探头自动上报调节</span></div>
+          <div class="metric"><strong>AI预警</strong><span>提前识别过热等风险</span></div>
+        </div>
+      </div>
 
-  <div class="feature">
-    <div class="feature-icon">🌡</div>
-    <div>
-      <b>温湿度探头</b>
-      <p>在冷链仓库的每个角落部署温湿度探头，数据自动上报、自动调节。</p>
-    </div>
-  </div>
+      <div class="feature">
+        <div class="feature-icon">◉</div>
+        <div>
+          <b>轮胎传感器</b>
+          <p>在轮胎里埋下一个传感器，实时监测胎压和温度，一旦异常就立即报警。</p>
+        </div>
+      </div>
 
-  <div class="card">
-    <h3>用实时的数据拦截灾难</h3>
-    <p>通过物联网实时监测，让AI高温预预警系统能够提前发现轮胎过热风险。</p>
-  </div>
+      <div class="feature">
+        <div class="feature-icon">☁</div>
+        <div>
+          <b>气体监测传感器</b>
+          <p>在化学品运输罐车上安装气体监测传感器，泄漏第一时间就知道。</p>
+        </div>
+      </div>
 
-  <div class="quote">它让原本那些沉默的可能酝酿大祸的物理状态开始二十四小时向你喊话。</div>
-</section>
+      <div class="feature">
+        <div class="feature-icon">🌡</div>
+        <div>
+          <b>温湿度探头</b>
+          <p>在冷链仓库的每个角落部署温湿度探头，数据自动上报、自动调节。</p>
+        </div>
+      </div>
 
-<section class="section" id="value">
-  <div class="section-kicker">03 / BUSINESS VALUE</div>
-  <h2 class="title">不止预警，更是企业经营底气</h2>
-  <p class="lead">解决的不只是经济损失，降低管理成本。</p>
+      <div class="card">
+        <h3>用实时的数据拦截灾难</h3>
+        <p>通过物联网实时监测，让AI高温预预警系统能够提前发现轮胎过热风险。</p>
+      </div>
 
-  <div class="card dark">
-    <span class="pill">商业价值</span>
-    <h3>安全从成本支出变成可溢价竞争力</h3>
-    <p>一套数据实时可查的安全管理系统。</p>
-    <div class="metrics">
-      <div class="metric"><strong>监管</strong><span>数据可追溯，合规有据</span></div>
-      <div class="metric"><strong>保险</strong><span>安全评级提升</span></div>
-      <div class="metric"><strong>竞争力</strong><span>安全能力形成业务溢价</span></div>
-    </div>
-  </div>
+      <div class="quote">它让原本那些沉默的可能酝酿大祸的物理状态开始二十四小时向你喊话。</div>
+    </section>
 
-  <div class="feature">
-    <div class="feature-icon">🛡</div>
-    <div>
-      <b>面对监管</b>
-      <p>当你拥有一套被物联网严格监控，数据实时可查的安全管理系统。</p>
-    </div>
-  </div>
+    <!-- 业务价值 -->
+    <section class="section" id="value">
+      <div class="section-kicker">03 / BUSINESS VALUE</div>
+      <h2 class="title">不止预警，更是企业经营底气</h2>
+      <p class="lead">解决的不只是经济损失，降低管理成本。</p>
 
-  <div class="feature">
-    <div class="feature-icon">📈</div>
-    <div>
-      <b>经营层面收益</b>
-      <p>你的安全评级上去了呢，保险费率可能就下来了。安全从一项成本支出变成一个可溢价的市场竞争力。</p>
-    </div>
-  </div>
+      <div class="card dark">
+        <span class="pill">商业价值</span>
+        <h3>安全从成本支出变成可溢价竞争力</h3>
+        <p>一套数据实时可查的安全管理系统。</p>
+        <div class="metrics">
+          <div class="metric"><strong>监管</strong><span>数据可追溯，合规有据</span></div>
+          <div class="metric"><strong>保险</strong><span>安全评级提升</span></div>
+          <div class="metric"><strong>竞争力</strong><span>安全能力形成业务溢价</span></div>
+        </div>
+      </div>
 
-  <div class="quote">所以物联网对你而言远不是几个报警器，它是悬在那些高风险高资产上的一个数字保险丝。</div>
+      <div class="feature">
+        <div class="feature-icon">🛡</div>
+        <div>
+          <b>面对监管</b>
+          <p>当你拥有一套被物联网严格监控，数据实时可查的安全管理系统。</p>
+        </div>
+      </div>
 
-  <div class="tag-row">
-    <span class="tag">安全合规</span>
-    <span class="tag">保险议价</span>
-    <span class="tag">风险前置</span>
-  </div>
+      <div class="feature">
+        <div class="feature-icon">📈</div>
+        <div>
+          <b>经营层面收益</b>
+          <p>你的安全评级上去了呢，保险费率可能就下来了。安全从一项成本支出变成一个可溢价的市场竞争力。</p>
+        </div>
+      </div>
 
-</section>
-</main>
+      <div class="quote">所以物联网对你而言远不是几个报警器，它是悬在那些高风险高资产上的一个数字保险丝。</div>
 
-<footer class="footer">物联网赋能物流 · 实时感知 · 风险前置 · 数据驱动安全</footer>
+      <div class="tag-row">
+        <span class="tag">安全合规</span>
+        <span class="tag">保险议价</span>
+        <span class="tag">风险前置</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">物联网赋能物流 · 实时感知 · 风险前置 · 数据驱动安全</footer>
 </div>
 
-<div id="toast" style="position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#17253b;color:white;padding:11px 16px;border-radius:12px;font-size:12px;box-shadow:0 8px 25px #0002;transition:.2s;z-index:10">已复制</div>
+<!-- Toast 提示 -->
+<div id="toast">已复制</div>
 
 <script>
-const buttons=[...document.querySelectorAll('[data-tab]')];
-const sections=[...document.querySelectorAll('.section')];
-buttons.forEach(btn=>btn.addEventListener('click',()=>{
-  buttons.forEach(b=>b.classList.toggle('active',b===btn));
-  sections.forEach(s=>s.classList.toggle('active',s.id===btn.dataset.tab));
-  window.scrollTo({top:0,behavior:'smooth'});
-}));
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;
-  t.style.opacity='1';
-  t.style.transform='translate(-50%,0)';
-  clearTimeout(window.toastTimer);
-  window.toastTimer=setTimeout(()=>{
-    t.style.opacity='0';
-    t.style.transform='translate(-50%,20px)'
-  },2100);
-}
-async function copyText(text){
-  try{
-    await navigator.clipboard.writeText(text);
-  }catch(e){
-    const ta=document.createElement('textarea');
-    ta.value=text;
-    ta.style.position='fixed';
-    ta.style.opacity='0';
-    document.body.appendChild(ta);
-    ta.select();
-    try{document.execCommand('copy');}
-    catch(err){showToast('当前浏览器不支持自动复制，请长按选择文本')}
-    ta.remove();
-  }
-}
+  (function() {
+    // 导航切换
+    const buttons = [...document.querySelectorAll('[data-tab]')];
+    const sections = [...document.querySelectorAll('.section')];
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        // 切换 active 状态
+        buttons.forEach(b => b.classList.toggle('active', b === btn));
+        sections.forEach(s => s.classList.toggle('active', s.id === btn.dataset.tab));
+        // 平滑滚动到顶部（兼容手机）
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // 提示条工具
+    const toastEl = document.getElementById('toast');
+    let toastTimer = null;
+
+    function showToast(msg) {
+      toastEl.textContent = msg || '已复制';
+      toastEl.style.opacity = '1';
+      toastEl.style.transform = 'translate(-50%, 0)';
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toastEl.style.opacity = '0';
+        toastEl.style.transform = 'translate(-50%, 30px)';
+      }, 2100);
+    }
+
+    // 复制文本（保留原本功能，但不强制使用）
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('已复制到剪贴板');
+      } catch (e) {
+        // 降级方案
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        ta.style.top = '0';
+        ta.style.left = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+          showToast('已复制');
+        } catch (err) {
+          showToast('请长按手动复制');
+        }
+        ta.remove();
+      }
+    }
+
+    // 将复制功能暴露给可能的调用，但页面没有复制按钮，无需额外绑定
+    // 如果未来有元素带 data-copy 可以绑定，这里保留
+    document.querySelectorAll('[data-copy]').forEach(el => {
+      el.addEventListener('click', () => {
+        copyText(el.dataset.copy || el.textContent.trim());
+      });
+    });
+  })();
 </script>
 </body>
 </html>
