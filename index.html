@@ -248,7 +248,6 @@ function showToast(msg){
 async function copyText(text){
   try{
     await navigator.clipboard.writeText(text);
-    showToast('话术已复制，可直接粘贴');
   }catch(e){
     const ta=document.createElement('textarea');
     ta.value=text;
@@ -256,7 +255,7 @@ async function copyText(text){
     ta.style.opacity='0';
     document.body.appendChild(ta);
     ta.select();
-    try{document.execCommand('copy');showToast('话术已复制，可直接粘贴')}
+    try{document.execCommand('copy');}
     catch(err){showToast('当前浏览器不支持自动复制，请长按选择文本')}
     ta.remove();
   }
