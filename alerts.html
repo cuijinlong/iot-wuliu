@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>告警中心</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .alert-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--surface-variant); }
+  .alert-item:last-child { border-bottom: none; }
+  .alert-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 22px; }
+  .alert-icon.danger { background: #FEE2E2; color: #EF4444; }
+  .alert-icon.warning { background: #FEF3C7; color: #F59E0B; }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <header class="app-bar">
+    <div class="app-bar-title">告警中心</div>
+    <div class="app-bar-action" onclick="showToast('全部标为已读')">全部已读</div>
+  </header>
+
+  <div class="page-viewport">
+    <div class="page active">
+      <div class="m3-card" style="padding: 0 16px;">
+        <div class="alert-item">
+          <div class="alert-icon danger">⚠</div>
+          <div style="flex:1;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span style="font-weight:600; font-size:15px;">严重超负荷</span>
+              <span style="font-size:12px; color:var(--outline);">10分钟前</span>
+            </div>
+            <div style="font-size:13px; color:var(--on-surface-variant); margin-bottom:12px; line-height:1.5;">单相园-A栋照明回路当前功率达到 4.7kW，已超过设定阈值 4.5kW。</div>
+            <button class="m3-btn primary" style="padding:8px 16px; font-size:13px; width:auto;" onclick="showToast('已派发运维工单')">派发工单</button>
+          </div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-icon warning">⚡</div>
+          <div style="flex:1;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:6px;">
+              <span style="font-weight:600; font-size:15px;">电压波动异常</span>
+              <span style="font-size:12px; color:var(--outline);">2小时前</span>
+            </div>
+            <div style="font-size:13px; color:var(--on-surface-variant); margin-bottom:12px; line-height:1.5;">单相园-A栋插座回路检测到电压异常波动，范围 210V - 245V。</div>
+            <button class="m3-btn outline" style="padding:8px 16px; font-size:13px; width:auto;" onclick="showToast('已忽略')">忽略</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">▦</span></div><div>概览</div></a>
+    <a href="alerts.html" class="nav-item active"><div class="nav-indicator"><span class="nav-icon">♧</span></div><div>告警</div></a>
+    <a href="meter.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">✎</span></div><div>抄表</div></a>
+    <a href="devices.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">⚙</span></div><div>运维</div></a>
+  </nav>
+</div>
+<div class="toast" id="toast">操作成功</div>
+<script src="common.js"></script>
+</body>
+</html>
