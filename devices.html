@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>设备运维</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .device-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: var(--elevation-1); display: flex; align-items: center; gap: 12px; }
+  .device-status-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .device-status-dot.offline { background: var(--outline); box-shadow: none; }
+  .action-grid { display: flex; gap: 8px; margin-top: 12px; }
+  .action-btn { flex: 1; padding: 8px 0; font-size: 12px; text-align: center; background: var(--surface); border-radius: 6px; border: 1px solid var(--surface-variant); color: var(--on-surface); }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <header class="app-bar">
+    <div class="app-bar-title">设备运维</div>
+    <div class="app-bar-action" onclick="showToast('正在刷新设备状态')">刷新</div>
+  </header>
+
+  <div class="page-viewport">
+    <div class="page active">
+      
+      <div class="device-card">
+        <div class="device-status-dot"></div>
+        <div style="flex:1;">
+          <div style="font-weight:600; font-size:15px; margin-bottom:4px;">1# 进线总表</div>
+          <div style="font-size:12px; color:var(--outline);">在线 · 信号极佳 · 固件 v2.1.0</div>
+        </div>
+      </div>
+
+      <div class="device-card" style="flex-direction:column; align-items:stretch;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="device-status-dot"></div>
+          <div style="flex:1;">
+            <div style="font-weight:600; font-size:15px; margin-bottom:4px;">空调虚拟表</div>
+            <div style="font-size:12px; color:var(--outline);">在线 · 信号良好</div>
+          </div>
+        </div>
+        <div class="action-grid">
+          <div class="action-btn" onclick="showToast('下发重启指令成功')">🔄 重启设备</div>
+          <div class="action-btn" onclick="showToast('正在下发参数同步...')">⚙️ 同步配置</div>
+        </div>
+      </div>
+
+      <div class="device-card" style="flex-direction:column; align-items:stretch;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="device-status-dot offline"></div>
+          <div style="flex:1;">
+            <div style="font-weight:600; font-size:15px; margin-bottom:4px; color:var(--outline);">温湿度传感器</div>
+            <div style="font-size:12px; color:var(--red);">离线 · 最后在线: 昨日 18:30</div>
+          </div>
+        </div>
+        <div class="action-grid">
+          <div class="action-btn" onclick="showToast('已发送唤醒信号')">发送唤醒</div>
+          <div class="action-btn" style="background:#FEE2E2; color:var(--red); border-color:#FCA5A5;" onclick="showToast('已通知工程人员现场检修')">报修</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">▦</span></div><div>概览</div></a>
+    <a href="alerts.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">♧</span></div><div>告警</div></a>
+    <a href="meter.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">✎</span></div><div>抄表</div></a>
+    <a href="devices.html" class="nav-item active"><div class="nav-indicator"><span class="nav-icon">⚙</span></div><div>运维</div></a>
+  </nav>
+</div>
+<div class="toast" id="toast">操作成功</div>
+<script src="common.js"></script>
+</body>
+</html>
