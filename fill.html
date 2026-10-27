@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>手工填报</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  /* 独有样式 */
+  .m3-input-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+  .m3-input-group label { font-size: 12px; color: var(--on-surface-variant); font-weight: 500; }
+  .m3-input { width: 100%; padding: 12px 14px; border: 1px solid var(--outline); border-radius: 8px; font-size: 14px; background: white; outline: none; }
+  .m3-input:focus { border-color: var(--primary); }
+  .fill-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--surface-variant); }
+  .fill-item:last-child { border-bottom: none; }
+  .fill-input { width: 100px; padding: 8px; border: 1px solid var(--outline); border-radius: 6px; text-align: right; font-size: 14px; font-weight: 600; color: var(--primary); }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <header class="app-bar">
+    <div class="app-bar-title">手工填报</div>
+    <div class="app-bar-action" onclick="showToast('切换场站')">单相场站 ⌄</div>
+  </header>
+
+  <div class="page-viewport">
+    <div class="page active">
+      <div class="m3-card">
+        <div class="section-title">填报参数配置</div>
+        <div class="m3-input-group">
+          <label>选择设备 / 回路</label>
+          <select class="m3-input"><option>单相园-空调虚拟表</option></select>
+        </div>
+        <div class="m3-input-group">
+          <label>选择指标参数</label>
+          <select class="m3-input"><option>用电量 (kW·h)</option></select>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div class="m3-input-group"><label>开始时间</label><input type="date" class="m3-input" value="2026-01-01"></div>
+          <div class="m3-input-group"><label>结束时间</label><input type="date" class="m3-input" value="2026-12-31"></div>
+        </div>
+      </div>
+
+      <div class="m3-card">
+        <div class="section-title">填写月度数据 <span id="totalText" style="font-size:12px;color:var(--outline);font-weight:normal">总计: 11310.00</span></div>
+        <div class="fill-item"><div>1月</div><div><input type="number" class="fill-input" value="1820" oninput="calcTotal()"> kWh</div></div>
+        <div class="fill-item"><div>2月</div><div><input type="number" class="fill-input" value="1650" oninput="calcTotal()"> kWh</div></div>
+        <div class="fill-item"><div>3月</div><div><input type="number" class="fill-input" value="980" oninput="calcTotal()"> kWh</div></div>
+        <div class="fill-item"><div>4月</div><div><input type="number" class="fill-input" value="420" oninput="calcTotal()"> kWh</div></div>
+      </div>
+      <button class="m3-btn primary" onclick="showToast('数据保存成功！')">保存填报数据</button>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="fill.html" class="nav-item active"><div class="nav-indicator"><span class="nav-icon">✎</span></div><div>填报</div></a>
+    <a href="history.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">⌁</span></div><div>历史</div></a>
+    <a href="analysis.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">▦</span></div><div>分析</div></a>
+    <a href="index.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">☻</span></div><div>概览</div></a>
+  </nav>
+</div>
+<div class="toast" id="toast">操作成功</div>
+<script src="common.js"></script>
+<script>
+  function calcTotal() {
+    let inputs = document.querySelectorAll('.fill-input');
+    let total = 0;
+    inputs.forEach(i => total += Number(i.value) || 0);
+    document.getElementById('totalText').textContent = `总计: ${total.toFixed(2)}`;
+  }
+</script>
+</body>
+</html>
