@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>历史能耗</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .chart-container { width: 100%; height: 220px; margin-top: 12px; }
+  .chart-svg { width: 100%; height: 100%; }
+  .chart-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--outline); margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <header class="app-bar">
+    <div class="app-bar-title">历史能耗</div>
+    <div class="app-bar-action" onclick="showToast('切换场站')">单相场站 ⌄</div>
+  </header>
+
+  <div class="page-viewport">
+    <div class="page active">
+      <div class="m3-card" style="padding: 12px;">
+        <div style="display:flex; gap:8px; overflow-x:auto; padding-bottom:4px;">
+          <span style="background:#E8F5E9;color:var(--primary);padding:6px 12px;border-radius:12px;font-size:13px;white-space:nowrap;">单相园-1#进线总表</span>
+          <span style="background:#F1F5F9;color:var(--outline);padding:6px 12px;border-radius:12px;font-size:13px;white-space:nowrap;">单相园-空调虚拟表</span>
+        </div>
+      </div>
+
+      <div class="m3-card">
+        <div class="section-title">数据折线图 <button class="m3-text-button" onclick="showToast('切换指标')">有功功率 (kW) ⌄</button></div>
+        <div class="chart-container">
+          <svg class="chart-svg" viewBox="0 0 340 200" preserveAspectRatio="none">
+            <g stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4">
+              <line x1="0" y1="40" x2="340" y2="40" /><line x1="0" y1="90" x2="340" y2="90" /><line x1="0" y1="140" x2="340" y2="140" />
+            </g>
+            <polyline points="0,60 100,60 180,65 250,60 300,180" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linejoin="round" />
+            <circle cx="300" cy="180" r="4" fill="#10B981" stroke="#fff" stroke-width="2" />
+            <text x="150" y="50" fill="#EF4444" font-size="12" font-weight="bold">4.7</text>
+            <text x="300" y="170" fill="#10B981" font-size="12" font-weight="bold" text-anchor="middle">2.7</text>
+          </svg>
+        </div>
+        <div class="chart-labels"><span>10-21</span><span>10-22</span><span>10-24</span><span>10-26</span><span>10-27</span></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="fill.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">✎</span></div><div>填报</div></a>
+    <a href="history.html" class="nav-item active"><div class="nav-indicator"><span class="nav-icon">⌁</span></div><div>历史</div></a>
+    <a href="analysis.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">▦</span></div><div>分析</div></a>
+    <a href="index.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">☻</span></div><div>概览</div></a>
+  </nav>
+</div>
+<div class="toast" id="toast">操作成功</div>
+<script src="common.js"></script>
+</body>
+</html>
