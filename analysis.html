@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>分项能耗</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .progress-item { margin-bottom: 16px; }
+  .progress-header { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+  .progress-bar-bg { height: 8px; background: var(--surface-variant); border-radius: 4px; overflow: hidden; }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <header class="app-bar">
+    <div class="app-bar-title">分项能耗</div>
+    <div class="app-bar-action" onclick="showToast('切换场站')">单相场站 ⌄</div>
+  </header>
+
+  <div class="page-viewport">
+    <div class="page active">
+      <div class="m3-card">
+        <div class="section-title">分项用电统计 <button class="m3-text-button" onclick="showToast('切换周期')">按日 ⌄</button></div>
+        <div style="height: 160px;">
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; height:130px; padding-top:10px;">
+            <div style="width:10px; height:70px; background:#3B82F6; border-radius:2px;"></div>
+            <div style="width:10px; height:40px; background:#10B981; border-radius:2px;"></div>
+            <div style="width:10px; height:90px; background:#3B82F6; border-radius:2px;"></div>
+            <div style="width:10px; height:50px; background:#10B981; border-radius:2px;"></div>
+            <div style="width:10px; height:80px; background:#3B82F6; border-radius:2px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m3-card">
+        <div class="section-title">用电分布占比</div>
+        <div style="display:flex; align-items:center; justify-content:space-around; padding: 10px 0;">
+          <div style="width:100px; height:100px; border-radius:50%; background:conic-gradient(#3B82F6 0% 52.6%, #10B981 52.6% 100%); position:relative; display:flex; align-items:center; justify-content:center;">
+            <div style="width:70px; height:70px; background:white; border-radius:50%; position:absolute;"></div>
+            <div style="z-index:1; text-align:center; font-size:10px;">总用电量<br><strong style="font-size:14px;">686.22</strong></div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:12px; font-size:13px;">
+            <div style="display:flex; align-items:center; gap:8px;"><span style="width:10px;height:10px;background:#3B82F6;"></span>照明 361.03</div>
+            <div style="display:flex; align-items:center; gap:8px;"><span style="width:10px;height:10px;background:#10B981;"></span>插座 325.19</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="m3-card">
+        <div class="section-title">设备用电排名</div>
+        <div class="progress-item">
+          <div class="progress-header"><span>1. 照明</span> <span>361.03 kW·h</span></div>
+          <div class="progress-bar-bg"><div style="height:100%; width:100%; background:#10B981;"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span>2. 插座</span> <span>325.19 kW·h</span></div>
+          <div class="progress-bar-bg"><div style="height:100%; width:90%; background:#10B981;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="fill.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">✎</span></div><div>填报</div></a>
+    <a href="history.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">⌁</span></div><div>历史</div></a>
+    <a href="analysis.html" class="nav-item active"><div class="nav-indicator"><span class="nav-icon">▦</span></div><div>分析</div></a>
+    <a href="index.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">☻</span></div><div>概览</div></a>
+  </nav>
+</div>
+<div class="toast" id="toast">操作成功</div>
+<script src="common.js"></script>
+</body>
+</html>
