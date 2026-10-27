@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>抄表</title>
+<link rel="stylesheet" href="common.css">
+<style>
+  .meter-list { display: flex; flex-direction: column; gap: 12px; }
+  .meter-item { background: white; border-radius: 12px; padding: 16px; box-shadow: var(--elevation-1); display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--surface-variant); }
+  .meter-info h4 { font-size: 15px; margin-bottom: 4px; }
+  .meter-info p { font-size: 12px; color: var(--outline); }
+  .meter-input-wrap { display: flex; align-items: center; gap: 8px; }
+  .meter-input { width: 90px; padding: 10px; border: 1px solid var(--outline); border-radius: 8px; text-align: right; font-size: 15px; font-weight: 700; color: var(--primary); outline: none; }
+  .meter-input:focus { border-color: var(--primary); }
+</style>
+</head>
+<body>
+<div class="app-container">
+  <header class="app-bar">
+    <div class="app-bar-title">快速抄表</div>
+    <div class="app-bar-action" style="background:var(--primary); color:white;" onclick="showToast('调起相机扫码')">📷 扫码</div>
+  </header>
+
+  <div class="page-viewport">
+    <div class="page active">
+      <div style="font-size:13px; color:var(--on-surface-variant); margin-bottom:12px;">提示：双击输入框可直接修改上次读数，修改后请核对。</div>
+      
+      <div class="meter-list">
+        <div class="meter-item">
+          <div class="meter-info">
+            <h4>1# 进线总表</h4>
+            <p>上次读数: 1820.5 (10-26)</p>
+          </div>
+          <div class="meter-input-wrap">
+            <input type="number" class="meter-input" value="1820" onfocus="this.value=''">
+            <span style="font-size:12px; color:var(--outline);">kWh</span>
+          </div>
+        </div>
+
+        <div class="meter-item">
+          <div class="meter-info">
+            <h4>空调虚拟表</h4>
+            <p>上次读数: 1650.0 (10-26)</p>
+          </div>
+          <div class="meter-input-wrap">
+            <input type="number" class="meter-input" value="1650" onfocus="this.value=''">
+            <span style="font-size:12px; color:var(--outline);">kWh</span>
+          </div>
+        </div>
+
+        <div class="meter-item">
+          <div class="meter-info">
+            <h4>A栋照明回路</h4>
+            <p>上次读数: 980.2 (10-26)</p>
+          </div>
+          <div class="meter-input-wrap">
+            <input type="number" class="meter-input" value="980" onfocus="this.value=''">
+            <span style="font-size:12px; color:var(--outline);">kWh</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="m3-btn primary" style="margin-top: 24px;" onclick="showToast('所有读数已提交成功！')">提交抄表数据</button>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">▦</span></div><div>概览</div></a>
+    <a href="alerts.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">♧</span></div><div>告警</div></a>
+    <a href="meter.html" class="nav-item active"><div class="nav-indicator"><span class="nav-icon">✎</span></div><div>抄表</div></a>
+    <a href="devices.html" class="nav-item"><div class="nav-indicator"><span class="nav-icon">⚙</span></div><div>运维</div></a>
+  </nav>
+</div>
+<div class="toast" id="toast">操作成功</div>
+<script src="common.js"></script>
+</body>
+</html>
